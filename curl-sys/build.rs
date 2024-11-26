@@ -31,9 +31,6 @@ fn main() {
     if !cfg!(feature = "static-curl") {
         // OSX ships libcurl by default, so we just use that version
         // so long as it has the right features enabled.
-        if target.contains("apple") && (!cfg!(feature = "http2") || curl_config_reports_http2()) {
-            return println!("cargo:rustc-flags=-l curl");
-        }
 
         // Next, fall back and try to use pkg-config if its available.
         if windows {
